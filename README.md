@@ -26,7 +26,7 @@ In this project:
   - Validation Loss
   - Performance evaluated over multiple epochs
 
-##📊 Results
+## 📊 Results
 The model achieves high validation accuracy
 
 Loss curves indicate good convergence
@@ -36,6 +36,5 @@ Minor fluctuations in validation loss suggest realistic generalization behavior
 Graphs included:
 
 Training vs Validation Loss
-
 Training vs Validation Accuracy
 
