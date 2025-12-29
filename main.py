@@ -87,9 +87,27 @@ test_dataset = image_dataset_from_directory(
 )
 import tensorflow as tf
 
+import tensorflow as tf
+
+# Custom function for 90°/270° rotations and vertical flips
+def custom_augmentation(image):
+    # Randomly apply 90° or 270° rotation
+    k = tf.random.uniform(shape=[], minval=0, maxval=2, dtype=tf.int32)
+    if k == 0:
+        image = tf.image.rot90(image, k=1)  # 90°
+    else:
+        image = tf.image.rot90(image, k=3)  # 270°
+    
+    # Randomly flip vertically
+    image = tf.image.random_flip_up_down(image)
+    
+    return image
+
+# Combine with standard Keras augmentations
 data_augmentation = tf.keras.Sequential([
-    tf.keras.layers.RandomFlip("horizontal"),
-    tf.keras.layers.RandomRotation(0.04),
+    tf.keras.layers.Lambda(custom_augmentation),  # Apply custom 90°/270° rotations & vertical flip
+    tf.keras.layers.RandomFlip("horizontal"),     # Random horizontal flip
+    tf.keras.layers.RandomRotation(0.04),         # Random small rotation ±4%
     tf.keras.layers.RandomZoom(height_factor=(-0.05, 0.05), width_factor=(-0.05, 0.05)),
     tf.keras.layers.RandomTranslation(height_factor=0.05, width_factor=0.05),
 ])
