@@ -152,7 +152,7 @@ model.compile(
     optimizer=tf.keras.optimizers.Adam(),
     metrics=['accuracy']
 )
-history = model.fit(train_dataset, validation_data=valid_dataset, epochs=100)
+history = model.fit(train_dataset, validation_data=valid_dataset, epochs=100, class_weight=class_weights_dict)
 model.save('model_anemia.h5')
 """VISULIZE MODEL """
 plt.plot(np.arange(100) , model_information['loss'] , label="loss")
@@ -197,12 +197,13 @@ class_names = train_generator.class_indices
 classes = list(class_names.keys())
 classes
 
-test_data_eval = model.evaluate(valid_generator)
+model.evaluate(test_dataset)
+
 
 #TEST VISULIZATION
 from tensorflow.keras.preprocessing import image
 def preprocess_image(img_path):
-    img = image.load_img(img_path, target_size=(64, 64))  # Assuming your model expects 64x64 images
+    img = image.load_img(img_path, target_size=(224, 224))  # Assuming your model expects 64x64 images
     img = image.img_to_array(img)
     img = img /255.0
     img = np.expand_dims(img, axis=0)
