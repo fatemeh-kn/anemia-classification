@@ -226,3 +226,5 @@ def predict_and_visualize(image_paths):
     plt.show()
 
 predict_and_visualize(test_images[:14])
+
+@Author : Fatemeh_Kn
