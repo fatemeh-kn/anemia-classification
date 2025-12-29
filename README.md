@@ -38,3 +38,10 @@ Graphs included:
 Training vs Validation Loss
 Training vs Validation Accuracy
 
+## 📈 Model Performance
+
+### 🔹 Accuracy per Epoch
+![Model Accuracy](T_acc_V_acc.png)
+
+### 🔹 Loss per Epoch
+![Model Loss](T_L_V_L.png)
